@@ -20,9 +20,10 @@ const api = {
   }
   
   function displayResults (weather) {
+    try{
     let city = document.querySelector('.location .city');
     city.innerText = `${weather.name}, ${weather.sys.country}`;
-  
+    
     let now = new Date();
     let date = document.querySelector('.location .date');
     date.innerText = dateBuilder(now);
@@ -36,7 +37,10 @@ const api = {
     let hilow = document.querySelector('.hi-low');
     hilow.innerText = `${Math.round(weather.main.temp_min)}°c / ${Math.round(weather.main.temp_max)}°c`;
   }
-  
+  catch(typeError) {
+    alert('City not found.');
+  }
+  }
   function dateBuilder (d) {
     let months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
     let days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
